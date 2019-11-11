@@ -22,7 +22,13 @@ Add this dependency to your application pom.xml
 #### property
 Example using the lookup in a property file
 ```
-my-vault-property=${aws-secret::secret-key} 
+my-aws-property=${aws-secret::secret-key} 
 ```
+
+If you'd like to return a specific key, you can use the pound symbol, ie
+```
+my-user-pass=${aws-secret::credentials#username}/${aws-secret::credentials#password}
+```
+
 ### flow
 See the following file for an example using in a flow [test-mule-config.xml](src/test/resources/test-mule-config.xml)
