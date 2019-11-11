@@ -1,0 +1,21 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:aws-secrets-properties-provider="http://www.mulesoft.org/schema/mule/aws-secrets-properties-provider"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+      http://www.mulesoft.org/schema/mule/aws-secrets-properties-provider http://www.mulesoft.org/schema/mule/aws-secrets-properties-provider/current/mule-aws-secrets-properties-provider.xsd">
+
+    <aws-secrets-properties-provider:config name="Aws_Secrets_Properties_Provider_Config"  region="${aws.region}" secretKey="${aws.secretKey}" accessKey="${aws.accessKey}" />
+
+    <flow name="standardSecretFlow">
+        <set-payload value="${aws-secret::dev/adamsecret}" />
+    </flow>
+
+    <flow name="jsonSecretFlow">
+        <set-payload value="${aws-secret::dev/adamsecretc}" />
+    </flow>
+
+    <flow name="jsonSecretFlowUsername">
+        <set-payload value="${aws-secret::dev/adamsecretc#username}/${aws-secret::dev/adamsecretc#password}" />
+    </flow>
+
+</mule>
